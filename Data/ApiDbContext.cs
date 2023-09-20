@@ -14,8 +14,10 @@ namespace _Net.Data
            : base(options)
         {
             TodoItems = Set<TodoItem>();
+            ImageInfos = Set<ImageInfo>();
         }
 
         public DbSet<TodoItem> TodoItems { get; set; }
+        public DbSet<ImageInfo> ImageInfos { get; set; }
     }
 }

@@ -37,16 +37,22 @@ namespace _Net.Repositories
         {
             try
             {
-                _context.Entry(item).State = EntityState.Modified;
+                // Encuentra el objeto TodoItem que quieres actualizar.
+                TodoItem todoItem = await _context.TodoItems.FindAsync(item.Id);
+
+                // Actualiza la propiedad Img del objeto TodoItem con la nueva imagen.
+                todoItem.Img = item.Img;
+
+                // Guarda los cambios en la base de datos.
                 await _context.SaveChangesAsync();
-                return item;
+
+                return todoItem;
             }
             catch (Exception)
             {
                 return null;
             }
         }
-
         public async Task<bool> DeleteTodoItemAsync(int id)
         {
             // The return type is now `Task`.
